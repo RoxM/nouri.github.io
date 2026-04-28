@@ -1,0 +1,318 @@
+/* ==========================================================================
+   NOURI — Colors & Typography
+   Las mujeres merecen un diseño tan serio y cuidadoso como ellas mismas.
+   ========================================================================== */
+
+/* --- Typefaces -----------------------------------------------------------
+   Primary pairing:
+   • Instrument Serif — display, editorial, high-contrast. Used for titles,
+     quotes, large numerics. Italic is especially distinctive.
+   • Geist — UI + body. Neutral humanist sans, optimized for screens.
+   • Geist Mono — data, timestamps, dosages, tabular numbers.
+   Load via Google Fonts; see fonts/FONTS.md for substitution notes.
+   ------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+
+:root {
+  /* =====================================================================
+     COLOR — Core palette
+     Sampled directly from the NOURI mark. Navy is the anchor; purple
+     carries voice and authority; teal is clarity; lavender + mint are
+     the soft, human tissue around them.
+     ===================================================================== */
+
+  /* Brand — exact logo values */
+  --nouri-navy:       #1E1D2B;  /* logo ground, primary dark surface   */
+  --nouri-purple:     #7B39D2;  /* vibrant — primary brand accent      */
+  --nouri-teal:       #07B5B5;  /* clarity, data, “aquí estás”         */
+  --nouri-lavender:   #D6C7FD;  /* soft purple, calm                   */
+  --nouri-mint:       #B6E8E9;  /* soft teal, rest                     */
+  --nouri-violet:     #8677C3;  /* dusty purple, the bridge            */
+
+  /* Brand — extended ramps (derived, for hover/press/tint) */
+  --purple-900:       #3A1B66;
+  --purple-700:       #5B28A3;
+  --purple-600:       #7B39D2;   /* = --nouri-purple */
+  --purple-500:       #9757E6;
+  --purple-300:       #C2A3F3;
+  --purple-100:       #EADCFE;
+  --purple-50:        #F6EFFE;
+
+  --teal-900:         #044747;
+  --teal-700:         #067E7E;
+  --teal-600:         #07B5B5;   /* = --nouri-teal */
+  --teal-500:         #3AC8C8;
+  --teal-300:         #86DBDB;
+  --teal-100:         #CDEFEF;
+  --teal-50:          #EAF8F8;
+
+  /* Neutrals — warm, not cold. Paper, not screen. */
+  --paper:            #FBF7F1;   /* default app background (cream)      */
+  --paper-2:          #F4EEE3;   /* raised surface, card-on-card        */
+  --paper-3:          #EAE2D3;   /* hover wash on paper                 */
+  --ink-900:          #1E1D2B;   /* = --nouri-navy, body text on paper  */
+  --ink-700:          #3A3948;
+  --ink-500:          #6B6A7C;   /* secondary text                      */
+  --ink-300:          #A3A1B2;   /* tertiary / placeholder              */
+  --ink-100:          #D9D6E0;   /* hairline on dark, not on paper      */
+
+  /* Dark surface neutrals (for dark mode / hero sections) */
+  --dusk-950:         #141320;
+  --dusk-900:         #1E1D2B;   /* = navy */
+  --dusk-800:         #2A2939;
+  --dusk-700:         #3A3948;
+  --dusk-600:         #55536A;
+
+  /* =====================================================================
+     SEMANTIC TOKENS
+     Use these in components. Never hard-code brand colors outside :root.
+     ===================================================================== */
+
+  /* Surfaces */
+  --bg:               var(--paper);
+  --bg-raised:        var(--paper-2);
+  --bg-sunken:        var(--paper-3);
+  --bg-inverse:       var(--nouri-navy);
+  --bg-accent-soft:   var(--purple-50);
+  --bg-accent:        var(--nouri-purple);
+  --bg-calm:          var(--teal-50);
+
+  /* Foreground */
+  --fg:               var(--ink-900);
+  --fg-muted:         var(--ink-500);
+  --fg-subtle:        var(--ink-300);
+  --fg-inverse:       #F7F3EB;
+  --fg-accent:        var(--purple-700);
+  --fg-on-accent:     #FFFFFF;
+
+  /* Lines & edges */
+  --border:           #E3DCCC;   /* paper-tone hairline                 */
+  --border-strong:    #C9C1AF;
+  --border-inverse:   #2A2939;
+  --focus-ring:       var(--nouri-purple);
+
+  /* Semantic — feedback, symptoms, cycle phases */
+  --success:          #2E8F6F;   /* calm green, not jarring             */
+  --success-soft:     #D6EDE2;
+  --warning:          #C88A2E;   /* warm amber — flag, never alarm      */
+  --warning-soft:     #F4E6CB;
+  --danger:           #B4433D;   /* muted red — urgency, not panic      */
+  --danger-soft:      #F3D6D4;
+  --info:             var(--nouri-teal);
+  --info-soft:        var(--teal-100);
+
+  /* Symptom / phase colors — for trackers, charts */
+  --phase-follicular: var(--nouri-mint);
+  --phase-ovulatory:  var(--nouri-lavender);
+  --phase-luteal:     var(--nouri-violet);
+  --phase-menstrual:  #D9777A;
+  --phase-peri:       var(--nouri-purple);
+  --phase-meno:       var(--nouri-teal);
+
+  /* =====================================================================
+     TYPOGRAPHY — Base values
+     ===================================================================== */
+
+  --font-serif:       'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  --font-sans:        'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:        'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Fluid type scale — clamp(min, preferred, max) */
+  --fs-display-xl:    clamp(56px, 7vw, 112px);  /* hero editorial        */
+  --fs-display-lg:    clamp(44px, 5.5vw, 80px);
+  --fs-display-md:    clamp(36px, 4vw, 56px);
+  --fs-h1:            clamp(32px, 3.2vw, 44px);
+  --fs-h2:            clamp(26px, 2.4vw, 34px);
+  --fs-h3:            22px;
+  --fs-h4:            18px;
+  --fs-body-lg:       18px;
+  --fs-body:          16px;
+  --fs-body-sm:       14px;
+  --fs-caption:       13px;
+  --fs-micro:         11px;   /* all-caps eyebrows, tags */
+
+  /* Line heights */
+  --lh-tight:         1.05;   /* display serif                           */
+  --lh-snug:          1.2;
+  --lh-normal:        1.45;
+  --lh-relaxed:       1.6;    /* long-form reading                       */
+
+  /* Tracking */
+  --ls-tight:         -0.02em;
+  --ls-normal:        0;
+  --ls-wide:          0.08em;
+  --ls-micro:         0.14em; /* micro eyebrows                          */
+
+  /* =====================================================================
+     SPACING, RADIUS, SHADOW, MOTION
+     ===================================================================== */
+
+  --s-1:   4px;   --s-2:   8px;   --s-3:  12px;   --s-4:  16px;
+  --s-5:  20px;   --s-6:  24px;   --s-7:  32px;   --s-8:  40px;
+  --s-9:  56px;   --s-10: 72px;   --s-11: 96px;   --s-12: 128px;
+
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-2xl:  32px;
+  --r-pill: 999px;
+
+  /* Shadows — warm, low, not drop-shadow-y */
+  --shadow-xs: 0 1px 0 rgba(30, 29, 43, 0.04);
+  --shadow-sm: 0 2px 6px -2px rgba(30, 29, 43, 0.08), 0 1px 2px rgba(30, 29, 43, 0.04);
+  --shadow-md: 0 8px 24px -8px rgba(30, 29, 43, 0.12), 0 2px 6px -3px rgba(30, 29, 43, 0.06);
+  --shadow-lg: 0 24px 48px -16px rgba(30, 29, 43, 0.18), 0 8px 16px -8px rgba(30, 29, 43, 0.08);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.5);
+
+  /* Motion — slow, confident, never bouncy */
+  --ease-out:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:     140ms;
+  --dur-normal:   260ms;
+  --dur-slow:     480ms;
+}
+
+/* ==========================================================================
+   BASE — resets & defaults
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ==========================================================================
+   SEMANTIC TYPE — use these classes / elements directly
+   ========================================================================== */
+
+.eyebrow, .nouri-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.display-xl, h1.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.display-lg {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+}
+
+.display-md {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+}
+
+h1, .h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin: 0 0 var(--s-4);
+  text-wrap: balance;
+}
+
+h2, .h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  margin: 0 0 var(--s-3);
+  text-wrap: balance;
+}
+
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--s-2);
+}
+
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--s-2);
+}
+
+p, .body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg);
+  margin: 0 0 var(--s-4);
+  text-wrap: pretty;
+}
+
+.body-lg, .lede {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-relaxed);
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+.body-sm, small {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-normal);
+  color: var(--fg-muted);
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+  color: var(--fg-muted);
+}
+
+.serif-italic, em.display {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+code, kbd, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--fg);
+}
+
+.num-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* A/11y — focus */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

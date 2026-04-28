@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Control_Chrome__open_url",
+      "mcp__Control_Chrome__get_current_tab",
+      "mcp__Control_Chrome__execute_javascript"
+    ]
+  }
+}

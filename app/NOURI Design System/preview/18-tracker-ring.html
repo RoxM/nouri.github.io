@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html,body{background:var(--paper);margin:0}
+.card{padding:24px;display:flex;gap:28px;align-items:center}
+.ring{position:relative;width:120px;height:120px;flex-shrink:0}
+svg{transform:rotate(-90deg)}
+.t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-serif);color:#1E1D2B}
+.num{font-size:38px;line-height:1}
+.lab{font-family:var(--font-sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);margin-top:2px}
+.body h3{font-family:var(--font-serif);font-size:22px;margin:0 0 6px;font-weight:400}
+.body p{font-family:var(--font-sans);font-size:14px;line-height:1.5;color:#3A3948;margin:0;max-width:340px}
+</style></head><body><div class="card">
+  <div class="ring">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#EAE2D3" stroke-width="8"/>
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#07B5B5" stroke-width="8" stroke-linecap="round" stroke-dasharray="326" stroke-dashoffset="120"/>
+    </svg>
+    <div class="t"><span class="num">14</span><span class="lab">Día</span></div>
+  </div>
+  <div class="body">
+    <h3>Estás en fase folicular</h3>
+    <p>Tus niveles de estrógeno están subiendo. Probablemente te sientas con más energía esta semana.</p>
+  </div>
+</div></body></html>

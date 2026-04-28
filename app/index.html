@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NOURI — Prototipo</title>
+<link rel="stylesheet" href="./colors_and_type.css">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #2A2939;
+    min-height: 100vh;
+    font-family: 'Geist', system-ui;
+  }
+  .stage {
+    padding: 40px 20px 60px;
+    display: flex; flex-direction: column; align-items: center; gap: 32px;
+  }
+  .header {
+    color: #F7F3EB; text-align: center; max-width: 560px;
+  }
+  .header .eb {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: #D6C7FD; font-weight: 500;
+  }
+  .header h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 40px; font-weight: 400; letter-spacing: -0.02em;
+    line-height: 1.1; margin: 8px 0 12px;
+    text-wrap: balance;
+  }
+  .header p {
+    color: #A3A1B2; font-size: 15px; line-height: 1.5; margin: 0;
+    max-width: 440px; margin-inline: auto;
+  }
+  .header { display: flex; flex-direction: column; align-items: center; }
+  .switch {
+    display: flex; gap: 6px; background: rgba(255,255,255,.06);
+    padding: 6px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .switch button {
+    font-family: 'Geist', system-ui; font-size: 13px; font-weight: 500;
+    padding: 9px 18px; border-radius: 999px; border: none; cursor: pointer;
+    background: transparent; color: rgba(247,243,235,.6);
+    transition: all 140ms cubic-bezier(.22,.61,.36,1);
+  }
+  .switch button.on {
+    background: #7B39D2; color: #fff;
+  }
+  .device-wrap { position: relative; }
+</style>
+</head>
+<body>
+  <div class="stage" id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="ios-frame.jsx"></script>
+  <script type="text/babel" src="primitives.jsx"></script>
+  <script type="text/babel" src="HomeScreen.jsx"></script>
+  <script type="text/babel" src="CheckInScreen.jsx"></script>
+  <script type="text/babel" src="TrackScreen.jsx"></script>
+  <script type="text/babel" src="LearnScreen.jsx"></script>
+  <script type="text/babel" src="CommunityScreen.jsx"></script>
+  <script type="text/babel" src="LabsScreen.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+    const SCREENS = [
+      { id: 'home', label: 'Hoy' },
+      { id: 'track', label: 'Registro' },
+      { id: 'learn', label: 'Aprende' },
+      { id: 'comm', label: 'Comunidad' },
+      { id: 'checkin', label: 'Check-in' },
+      { id: 'labs', label: 'Análisis' },
+    ];
+
+    function App() {
+      const [screen, setScreen] = useState(() => localStorage.getItem('nouri.screen') || 'home');
+      const go = (s) => { setScreen(s); localStorage.setItem('nouri.screen', s); };
+
+      const body = {
+        home: <HomeScreen onOpenCheckIn={() => go('checkin')} onOpenArticle={() => go('learn')} onOpenLabs={() => go('labs')}/>,
+        track: <TrackScreen/>,
+        learn: <LearnScreen/>,
+        comm: <CommunityScreen/>,
+        checkin: <CheckInScreen onClose={() => go('home')} onSave={() => go('track')}/>,
+        labs: <LabsScreen onClose={() => go('home')}/>,
+      }[screen];
+
+      return (
+        <React.Fragment>
+          <div className="header">
+            <div className="eb">NOURI · UI Kit</div>
+            <h1>Información, registro, <em style={{color:'#D6C7FD'}}>comunidad</em>.</h1>
+            <p>Estás en el prototipo de NOURI hecho para tu feedback. Navega entre pantallas con la barra inferior o las pestañas de abajo.</p>
+          </div>
+
+          <div className="switch">
+            {SCREENS.map(s => (
+              <button key={s.id} className={screen === s.id ? 'on' : ''} onClick={() => go(s.id)}>{s.label}</button>
+            ))}
+          </div>
+
+          <div className="device-wrap">
+            <IOSDevice width={390} height={820} dark={false}>
+              {body}
+              {screen !== 'checkin' && screen !== 'labs' && <TabBar active={screen} onChange={go}/>}
+            </IOSDevice>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
