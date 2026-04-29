@@ -107,9 +107,11 @@
   /* ── Problem section ─────────────────────────────────────── */
   .problem { background: var(--paper); }
   .problem .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  @media (max-width: 900px) { .problem .grid { grid-template-columns: 1fr; gap: 40px; } }
-
   .problem .sticky { position: sticky; top: 120px; }
+  @media (max-width: 900px) {
+    .problem .grid { grid-template-columns: 1fr; gap: 40px; }
+    .problem .sticky { position: static; }
+  }
   .eyebrow {
     font-family: var(--font-sans); font-size: 12px; font-weight: 500;
     letter-spacing: .14em; text-transform: uppercase; color: var(--nouri-purple);
@@ -158,22 +160,24 @@
     margin: 28px 0 0; text-wrap: pretty;
   }
   .shift .lede strong { color: #F7F3EB; font-weight: 500; }
-  
-<<<<<<< HEAD
-=======
-/* ──  Demo interactiva -->*/
-<section class="demo-section">
-  <h2>Pruébalo ahora</h2>
-  <div class="app-frame">
-    <iframe
-      src="./app/"
-      title="Prueba Nouri"
-      scrolling="yes"
-      frameborder="0"
-    ></iframe>
-  </div>
 
->>>>>>> d4618b380b055bb0b6431cc39de1beccea8c1e60
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center;
+  }
+  .shift-img {
+    display: flex; justify-content: center;
+  }
+  .shift-img img {
+    width: 100%; max-width: 300px;
+    border-radius: 32px;
+    box-shadow: 0 32px 64px -16px rgba(0,0,0,.5);
+  }
+  @media (max-width: 900px) {
+    .shift-grid { grid-template-columns: 1fr; gap: 48px; }
+    .shift-img { order: -1; }
+    .shift-img img { max-width: 260px; }
+  }
+  
   /* ── How it works (3 steps) ───────────────────────────────── */
   .how { background: var(--paper); }
   .how .head { text-align: center; max-width: 720px; margin: 0 auto 80px; }
@@ -183,7 +187,7 @@
     margin: 24px 0 0; text-wrap: pretty;
   }
 
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
 
   .step {
@@ -404,28 +408,32 @@
 <!-- Shift -->
 <section class="shift">
   <div class="wrap">
-    <div class="eyebrow">NOURI cambia eso</div>
-    <h2 class="section-h">Una IA que conecta los puntos que tu médico <em>no está viendo</em>.</h2>
-    <p class="lede">
-      Ingresas tus síntomas y tus exámenes — y en menos de dos minutos,
-      te mostramos cómo la baja de estrógeno puede estar detrás de la niebla mental,
-      los pinchazos en la planta del pie, el aumento de grasa abdominal.
-      <strong>No son números genéricos de laboratorio. Es información sobre tu cuerpo, en tu etapa, con tus números.</strong>
-    </p>
+    <div class="shift-grid">
+      <div class="shift-img">
+        <img src="assets/app-screenshot.png" alt="Pantalla de inicio de NOURI">
+      </div>
+      <div class="shift-text">
+        <div class="eyebrow">NOURI cambia eso</div>
+        <h2 class="section-h">Una IA que conecta los puntos que tu médico <em>no está viendo</em>.</h2>
+        <p class="lede">
+          Ingresas tus síntomas y tus exámenes — y en menos de dos minutos,
+          te mostramos cómo la baja de estrógeno puede estar detrás de la niebla mental,
+          los pinchazos en la planta del pie, el aumento de grasa abdominal.
+          <strong>No son números genéricos de laboratorio. Es información sobre tu cuerpo, en tu etapa, con tus números.</strong>
+        </p>
+        <div style="margin-top: 36px;">
+          <a class="cta-lg" href="https://nouriapp.github.io/nouri-app/" target="_blank" rel="noopener">
+            Ve nuestra demo interactiva aquí
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Demo interactiva -->
-<section class="demo-section">
-  <div class="phone-frame">
-    <iframe
-      src="https://nouriapp.github.io/nouri-app/"
-      title="Prueba Nouri"
-      scrolling="yes"
-      frameborder="0"
-    ></iframe>
-  </div>
-</section>
 
 <!-- How it works -->
 <section class="how">
@@ -434,6 +442,12 @@
       <div class="eyebrow" style="justify-content:center">Cómo funciona</div>
       <h2 class="section-h">Tres pasos. <em>Dos minutos.</em></h2>
       <p>Porque información es poder, y el poder empieza por entender qué está pasando.</p>
+      <a class="hero-cta" href="https://nouriapp.github.io/nouri-app/" target="_blank" rel="noopener">
+        Ve nuestra demo interactiva aquí
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
     </div>
 
     <div class="steps">
@@ -499,6 +513,14 @@
       de tu transición hormonal. Porque todas somos diferentes — y tu cuerpo merece
       respuestas específicas, no un "es normal a tu edad".
     </p>
+    <div style="margin-top: 36px;">
+      <a class="hero-cta" href="https://nouriapp.github.io/nouri-app/" target="_blank" rel="noopener">
+        Ve nuestra demo interactiva aquí
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
